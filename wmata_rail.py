@@ -71,12 +71,9 @@ class Train:
         
         next_station_name = traingetter.station_id_to_name(self.next_stop_id) or self.next_stop_id
         direction_prefix = self.direction_char if self.direction_char else str(self.direction)
-
-        # Longer lines need more padding for alignment
-        padding = " " * (20 - len(direction_prefix)) if len(direction_prefix) < 20 else " "
         
         return f"""
-{colors.get(self.route_id, "") + f" {direction_prefix} " + "\033[0m"}{padding}{"\033[1;44m" + self.trip_id + "\033[0m"} {"\033[1;33m" + status_info}\n{next_station_name} in {eta}\033[0m"""
+{colors.get(self.route_id, "") + f" {direction_prefix} " + "\033[0m"} {"\033[1;44m" + self.trip_id + "\033[0m"} {"\033[1;33m" + status_info}\n{next_station_name} in {eta}\033[0m"""
 
 def _secs_until(arrival_ts: int) -> float:
     try:
